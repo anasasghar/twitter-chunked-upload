@@ -23,9 +23,6 @@ The platform is built with a **TypeScript React frontend**, **Express backend**,
 ---
 
 
-<img width="296.5" height="200" alt="image" src="https://github.com/user-attachments/assets/9f3719c6-e6a5-49c8-b5bd-cbb8af393926" />
-
-
 
 ## Quick Start
 

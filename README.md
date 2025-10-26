@@ -42,7 +42,7 @@ Create a `.env` file with your X developer credentials and database info:
 ```env
 X_API_KEY=your_api_key
 X_API_SECRET=your_api_secret
-OAUTH_CALLBACK_URL=http://localhost:5000/api/auth/callback
+OAUTH_CALLBACK_URL=http://weborcloudurl.com/api/auth/callback
 DATABASE_URL=postgres://user:password@host:port/dbname
 ```
 
@@ -53,7 +53,7 @@ npm run dev
 ```
 
 3. Connect X account
-   Open [http://localhost:5000](http://localhost:5000) in your browser and authenticate via OAuth2.
+   Open weborcloudurl.com you set in your browser and authenticate via OAuth2.
 
 ---
 

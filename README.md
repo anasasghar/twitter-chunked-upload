@@ -4,6 +4,8 @@
 
 Tired of unreliable, low-code Twitter chunked upload workflows? This app handles large video uploads to X automatically, using the official API v2 chunked upload endpoints.
 
+Simply call the specified API url and app will auto upload and post to twitter. 
+
 This web application allows users to upload videos to X (Twitter) via a clean, full-stack interface. It features OAuth2 authentication, chunked uploads for large files, real-time status monitoring, and a fully documented API.
 
 The platform is built with a **TypeScript React frontend**, **Express backend**, and **PostgreSQL database using Drizzle ORM**.
@@ -157,3 +159,5 @@ npm run dev
 ```
 @tanstack/react-query, @radix-ui/*, tailwindcss, react-hook-form, zod, date-fns, wouter, ws
 ```
+
+For bigger files you will need to change post tweet logic, so it awaits longer. 

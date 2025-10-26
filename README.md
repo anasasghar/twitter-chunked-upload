@@ -2,97 +2,160 @@
 
 Chunked Video Uploads for X (Twitter)
 
-
-
 Tired of unreliable, low-code Twitter chunked upload workflows? This app handles large video uploads to X automatically, using the official API v2 chunked upload endpoints.
 
-Features
+This web application allows users to upload videos to X (Twitter) via a clean, full-stack interface. It features OAuth2 authentication, chunked uploads for large files, real-time status monitoring, and a fully documented API.
 
-Fully automated chunked video uploads
+The platform is built with a TypeScript React frontend, Express backend, and PostgreSQL database using Drizzle ORM.
 
-OAuth 2.0 authentication
+Overview
 
-Upload history tracking
+OAuth2 authentication with X (Twitter)
 
-Handles large videos in multiple chunks (2MB recommended)
+Upload videos using chunked uploads (2MB recommended)
 
-Clear error handling
+Real-time upload status monitoring
+
+REST API with interactive documentation
+
+PostgreSQL database for persistent data
 
 Quick Start
 1. Clone the repo
-git clone https://github.com/yourusername/twitter-chunked-upload.git
-cd twitter-chunked-upload
+git clone https://github.com/yourusername/x-video-upload.git
+cd x-video-upload
 
 2. Install dependencies
 npm install
 
 3. Configure environment variables
 
-Create a .env file with your X developer account credentials:
+Create a .env file with your X developer credentials and database info:
 
 X_API_KEY=your_api_key
 X_API_SECRET=your_api_secret
-OAUTH_CALLBACK_URL=http://localhost:3000/callback
+OAUTH_CALLBACK_URL=http://localhost:5000/api/auth/callback
+DATABASE_URL=postgres://user:password@host:port/dbname
 
-4. Start the app
-npm start
+4. Run the app
+npm run dev
 
-5. Connect your X account
+5. Connect X account
 
-Visit http://localhost:3000 and authenticate via OAuth 2.0.
+Open http://localhost:5000 in your browser and authenticate via OAuth2.
 
-API Overview
+Recent Changes
+
+October 26, 2025 - Replit Environment Setup
+
+Imported project from GitHub
+
+Installed missing dependency: nanoid
+
+Configured PostgreSQL database (Replit managed)
+
+Pushed schema using Drizzle Kit
+
+Set up development workflow: npm run dev on port 5000
+
+Updated browserslist database
+
+Configured deployment: autoscale mode
+
+Verified application is fully functional
+
+System Architecture
+Frontend
+
+Framework: React 18 + TypeScript, built with Vite
+
+Routing: Wouter (lightweight alternative to React Router)
+
+UI Components: shadcn/ui with Radix UI primitives
+
+Styling: Tailwind CSS with custom HSL-based design system
+
+Typography: Inter (UI), JetBrains Mono (code)
+
+State Management: TanStack Query (React Query)
+
+Pages: Dashboard, Authentication, API Documentation
+
+Backend
+
+Framework: Express.js + TypeScript, ESM modules
+
+File Uploads: Multer (in-memory storage, 512MB max)
+
+Chunked Upload: 2MB chunks for X API v2 compatibility
+
+Endpoints:
+
+/api/upload – video upload
+
+/api/uploads – upload history
+
+/api/auth/* – OAuth2 authentication
+
+Session Management: In-memory Map (dev); production should use Redis or DB-backed sessions
+
+Database
+
+DB: PostgreSQL via Neon serverless
+
+ORM: Drizzle ORM
+
+Schema:
+
+oauth_tokens: Stores user tokens and expiration
+
+uploads: Tracks video upload status, media IDs, error messages
+
+Migration: Drizzle Kit, /migrations folder
+
+Authentication
+
+OAuth2 PKCE flow with X API v2
+
+Steps: Connect → Generate code verifier/challenge → Redirect → Token exchange → Store token
+
+Security: Code verifier never exposed to client; server-side token storage
+
+API
 Upload Video
+POST /api/upload
 
-Endpoint: POST /api/upload
-Uploads a video file with optional metadata. Handles chunked upload automatically.
 
-Parameters:
+Parameters: video (file), title, description
 
-Parameter	Type	Required	Description
-video	File	Yes	Video file (MP4, MOV supported)
-title	String	No	Video title (default: "Untitled Video")
-description	String	No	Optional description of the video
-
-Example Curl:
-
-curl -X POST http://localhost:3000/api/upload \
-  -F "video=@video.mp4" \
-  -F "title=My Awesome Video" \
-  -F "description=Check out this amazing video!"
+Response: Video upload status and X media ID
 
 Upload History
+GET /api/uploads
 
-Endpoint: GET /api/uploads
-Retrieve the history of all uploads with current status.
+
+Returns all past uploads with status (pending, processing, success, failed)
 
 Authentication Status
+GET /api/auth/status
 
-Endpoint: GET /api/auth/status
-Check if your account is connected:
 
-curl -X GET http://localhost:3000/api/auth/status
+Returns connected X user info
 
-Upload Status Values
+Chunked Upload Flow
 
-pending – Queued, waiting to start
+INIT – initialize upload with media type and size
 
-processing – Upload in progress
+APPEND – send 2MB chunks
 
-success – Completed successfully
+FINALIZE – complete upload
 
-failed – Upload failed
+Monitor processing state
 
-Error Codes
-Code	Error	Description
-401	Unauthorized	X account not connected / OAuth expired
-400	Bad Request	Missing required fields or invalid format
-413	Payload Too Large	Video exceeds size limit
-500	Internal Server Error	X API or server issue
-Rate Limits
+Dependencies
 
-Free tier: ~17 uploads/day, 85 chunks/day
+@neondatabase/serverless, drizzle-orm, multer, axios
 
-Recommended chunk size: 2MB (max 5MB)
+@tanstack/react-query, @radix-ui/*, tailwindcss
 
-Media expires 24 hours if not finalized
+react-hook-form, zod, date-fns, wouter, ws

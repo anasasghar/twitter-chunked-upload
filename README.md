@@ -1,4 +1,4 @@
-<img width="1440" height="900" alt="Screenshot 2025-10-26 at 10 33 58" src="https://github.com/user-attachments/assets/ce6e8ae5-a500-444f-a462-d22df9cc1cce" /># twitter-chunked-upload 🚀
+<img width="1290" height="596" alt="image" src="https://github.com/user-attachments/assets/f0df02ce-a566-4fa6-bf64-954751e67f39" />/># twitter-chunked-upload 🚀
 
 **Chunked Video Uploads for X (Twitter)**
 
@@ -20,8 +20,6 @@ The platform is built with a **TypeScript React frontend**, **Express backend**,
 
 ---
 
-
-<img width="1290" height="596" alt="image" src="https://github.com/user-attachments/assets/f0df02ce-a566-4fa6-bf64-954751e67f39" />
 
 <img width="1186" height="800" alt="image" src="https://github.com/user-attachments/assets/9f3719c6-e6a5-49c8-b5bd-cbb8af393926" />
 

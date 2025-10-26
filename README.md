@@ -134,25 +134,21 @@ npm run dev
 ---
 
 ## Chunked Upload Flow
-
+```
 1. **INIT** – initialize upload with media type and size
 2. **APPEND** – send 2MB chunks
 3. **FINALIZE** – complete upload
 4. Monitor processing state
-
+```
 ---
 
 ## Dependencies
 
 **Backend:**
-@neondatabase/serverless, drizzle-orm, multer, axios
-
-**Frontend:**
-@tanstack/react-query, @radix-ui/*, tailwindcss, react-hook-form, zod, date-fns, wouter, ws
-
 ```
-
-
-
-Do you want me to do that?
+@neondatabase/serverless, drizzle-orm, multer, axios
+```
+**Frontend:**
+```
+@tanstack/react-query, @radix-ui/*, tailwindcss, react-hook-form, zod, date-fns, wouter, ws
 ```
